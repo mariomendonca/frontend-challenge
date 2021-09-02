@@ -9,9 +9,9 @@ import Input from '../../components/Input'
 import { ButtonText, Content, NextButton, WelcomeText, Container } from './styles'
 
 export default function Welcome() {
-  const [name, setName] = useState('')
-
   const { navigate } = useNavigation()
+
+  const [name, setName] = useState('')
 
   async function handleNavigate() {
     if (name) {

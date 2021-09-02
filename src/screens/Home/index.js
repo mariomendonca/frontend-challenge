@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
 import { 
   Container,
@@ -19,6 +20,8 @@ import Input from '../../components/Input';
 import { Card } from '../../components/BookCard/styles';
 
 export default function Home() {
+  const { navigate } = useNavigation()
+
   const [name, setName] = useState('')
   const [search, setSearch] = useState('')
 
@@ -31,6 +34,10 @@ export default function Home() {
     getName()
   }, [])
 
+  function handleNavigate(bookName) {
+    navigate('search', { bookName })
+  }
+
   return (
     <Container>
       <Content>
@@ -39,6 +46,7 @@ export default function Home() {
           icon='search'
           state={search}
           setState={setSearch}
+          press={() => handleNavigate(search)}
         />
         <MessageText>
           Hi, <NameText>{name}</NameText> 👋
